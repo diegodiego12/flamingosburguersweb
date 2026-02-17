@@ -212,6 +212,7 @@
     .btn-border-rosa {
       background-color: transparent;
       color: #FF7B93;
+      padding: 1rem 2rem;
       border: 2px solid #FF7B93;
       transition: all 0.3s;
     }
@@ -249,7 +250,7 @@
     }
     .ingredient-chip {
       cursor: pointer;
-      padding: 4px 12px;
+      padding: 5px 12px;
       border-radius: 20px;
       border: 1px solid var(--primary-color);
       color: var(--primary-color);
@@ -312,16 +313,22 @@
       }
       .presentacionmenu-container {
     grid-template-columns: 1fr; /* se apilan en una sola columna */
-  }
+    }
     #bottom {
         display: flex;
         margin-left: 30px;
+      }
+      .btn-navegacion{
+        margin-left: 20px;
       }
     }
 
     @media (max-width: 480px) {
       .contenedor {
         grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
+      }
+      .btn-navegacion{
+        margin-left: 20px;
       }
       .nav-button .btn {
         flex: 1 1 45%;
