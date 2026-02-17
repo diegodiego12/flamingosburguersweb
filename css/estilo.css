@@ -311,6 +311,9 @@
       #btnResp{
         padding: 0rem 8rem ;
       }
+      .color-texto{
+        color: white;
+      }
       .presentacionmenu-container {
     grid-template-columns: 1fr; /* se apilan en una sola columna */
     }
