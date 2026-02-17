@@ -8,7 +8,7 @@
     html {
       margin: 0;
       padding: 0;
-      font-family: "Britannic Bold", fantasy, sans-serif;
+      font-family: 'Winco', 'Britannic Bold', fantasy, sans-serif;
       background-color: #f4f4f4;
       scroll-behavior: smooth;
     }
@@ -336,7 +336,7 @@
       
     }
     
-     /*@font-face {
+     @font-face {
       font-family:'Winco';
       src: url('../fonts/winco-black.woff2') format('woff2'),
       url('../fonts/winco-black.woff') format('woff');
