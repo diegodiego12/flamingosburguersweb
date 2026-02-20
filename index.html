@@ -8,7 +8,7 @@
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/estilo.css">
-  <link rel="icon" type="image/png" href="../pics/flamingologo.png">
+  <link rel="icon" type="image/png" href="pics/flamingologo.png">
 
 </head>
 <body>
@@ -207,7 +207,7 @@
 
   <div class="offcanvas offcanvas-top text-bg-dark" id="offcanvastop" style="height: auto;">
     <div class="offcanvas-header">
-      <h3 class="offcanvas-title position-absolute top-0 start-50 translate-middle" style="padding-top: 35px; color: #FF7B93;">Método de Pedido</h3>
+      <h3 class="offcanvas-title position-absolute top-0 start-50 translate-middle" style="padding-top: 70px; color: #FF7B93;">Método de Pedido</h3>
       <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-level="Cerrar"></button>
     </div>
     <div class="offcanvas-body text-center">
@@ -223,11 +223,13 @@
           </div>
         </div>
       </div>
+    
+
       <!-- Pasar a buscar -->
     <div id="formMostrador" class="mt-4 d-none">
         <div class="card bg-dark p-3 border-secondary">
             <label class="btnform">Nombre de Cliente:</label>
-            <input type="text" id="nombreMostrador" class="form-control bg-dark text-white border-secondary" placeholder="Ej: Juan">
+            <input type="text" id="nombreMostrador" class="form-control bg-dark text-white border-secondary" placeholder="Mostrador">
         </div>
     </div>
 
@@ -235,16 +237,22 @@
     <div id="formDomicilio" class="mt-4 d-none">
         <div class="card bg-dark p-3 border-secondary">
             <label class="btnform">Nombre del cliente:</label>
-            <input type="text" id="nombreDom" class="form-control bg-dark text-white border-secondary mb-2">
+            <input type="text" id="nombreDom" class="form-control bg-dark text-white border-secondary mb-2" placeholder="Ej: Juan Pérez">
 
-            <label class="btnform">Dirección:</label>
-            <input type="text" id="direccionDom" class="form-control bg-dark text-white border-secondary mb-2">
+            <label class="btnform">Teléfono:</label>
+            <input type="text" id="telefonoDom" class="form-control bg-dark text-white border-secondary mb-2" placeholder="9871641465">
+
+            <label class="btnform">Calle:</label> <!-- Actualizar las variables en el js -->
+            <input type="text" id="calleDom" class="form-control bg-dark text-white border-secondary mb-2" placeholder="Calle 28 #123">
+
+            <label class="btnform">Entre calles:</label>
+            <input type="text" id="direccionDom" class="form-control bg-dark text-white border-secondary mb-2" placeholder="Entre 28 y 30">
 
             <label class="btnform">Referencia:</label>
-            <input type="text" id="referenciaDom" class="form-control bg-dark text-white border-secondary" placeholder="Casa verde de dos pisos, con arból en la">
+            <input type="text" id="referenciaDom" class="form-control bg-dark text-white border-secondary" placeholder="Casa verde de dos pisos, con arból en la entrada...">
         </div>
     </div>
-
+      <!-- Menú para pedir -->
     <div class="offcanvas-body">
       <div class="container">
         <form id="orderForm">
@@ -261,22 +269,44 @@
                     <span class="badge bg-rosa rounded-pill">$80.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="80" data-name="Clásica">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" style="color: white;" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Extras (ej: sin catsup, +carne)">
-                  </div>
-                  <div class="ingredient-chips" data-type="burger">
-                    <span class="ingredient-chip item-extras" data-price="35">Doble Carne</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Queso</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Jamón</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Piña</span>
+                    <input type="text"  class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Comentarios Adicionales..."> 
+                  </div> <!-- Complementos de Hamburguesas -->
+                  <div class="contenedor-btns ingredient-chips" data-type="burger">
+                    <div class="ingredient-group" data-ingredient="Carne" data-price="35">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Carne</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Daisy</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Gouda" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Gouda</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Jamón" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Jamón</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Tocino" data-price="25">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Tocino</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <span class=" ingredient-chip item-extras" data-price="10">Piña</span>
                     <span class="ingredient-chip item-extras" data-price="10">Guacamole</span>
                     <span class="ingredient-chip item-extras" data-price="10">Chorizo</span>
                     <span class="ingredient-chip item-extras" data-price="10">Jalapeños</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Tocino</span>
+                    <span class="ingredient-chip item-extras" data-price="0">Pepinillos</span>
                   </div>
                 </div>
                 <!-- Item 2 -->
@@ -286,22 +316,45 @@
                     <span class="badge bg-rosa rounded-pill">$85.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm " style="width: 120px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="85" data-name="Cheese">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Extras...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Comentarios Adicionales...">
                   </div>
-                  <div class="ingredient-chips" data-type="burger">
-                    <span class="ingredient-chip item-extras" data-price="35">Doble Carne</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Queso</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Jamón</span>
+                  <div class="contenedor-btns ingredient-chips" data-type="burger">
+                    <div class="ingredient-group" data-ingredient="Carne" data-price="35">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Carne</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Daisy</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Gouda" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Gouda</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Jamón" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Jamón</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Tocino" data-price="25">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Tocino</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
                     <span class="ingredient-chip item-extras" data-price="10">Piña</span>
                     <span class="ingredient-chip item-extras" data-price="10">Guacamole</span>
                     <span class="ingredient-chip item-extras" data-price="10">Chorizo</span>
                     <span class="ingredient-chip item-extras" data-price="10">Jalapeños</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Tocino</span>
+                    
+                    <span class="ingredient-chip item-extras" data-price="0">Pepinillos</span>
                   </div>
                 </div>
                 <!-- Item 3 -->
@@ -311,22 +364,45 @@
                     <span class="badge bg-rosa rounded-pill">$90.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="90" data-name="Hawaiana">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Extras...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Comentarios Adicionales...">
                   </div>
-                  <div class="ingredient-chips" data-type="burger">
-                    <span class="ingredient-chip item-extras" data-price="35">Doble Carne</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Queso</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Jamón</span>
+                  <div class="contenedor-btns ingredient-chips" data-type="burger">
+                    <div class="ingredient-group" data-ingredient="Carne" data-price="35">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Carne</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Daisy</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Gouda" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Gouda</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Jamón" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Jamón</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Tocino" data-price="25">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Tocino</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
                     <span class="ingredient-chip item-extras" data-price="10">Piña</span>
                     <span class="ingredient-chip item-extras" data-price="10">Guacamole</span>
                     <span class="ingredient-chip item-extras" data-price="10">Chorizo</span>
                     <span class="ingredient-chip item-extras" data-price="10">Jalapeños</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Tocino</span>
+                    
+                    <span class="ingredient-chip item-extras" data-price="0">Pepinillos</span>
                   </div>
                 </div>
                 <!-- Item 4 -->
@@ -336,22 +412,45 @@
                     <span class="badge bg-rosa rounded-pill">$100.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="100" data-name="BBQ">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Extras...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Comentarios Adicionales...">
                   </div>
-                  <div class="ingredient-chips" data-type="burger">
-                    <span class="ingredient-chip item-extras" data-price="35">Doble Carne</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Queso</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Jamón</span>
+                  <div class="contenedor-btns ingredient-chips" data-type="burger">
+                    <div class="ingredient-group" data-ingredient="Carne" data-price="35">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Carne</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Daisy</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Gouda" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Gouda</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Jamón" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Jamón</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Tocino" data-price="25">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Tocino</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
                     <span class="ingredient-chip item-extras" data-price="10">Piña</span>
                     <span class="ingredient-chip item-extras" data-price="10">Guacamole</span>
                     <span class="ingredient-chip item-extras" data-price="10">Chorizo</span>
                     <span class="ingredient-chip item-extras" data-price="10">Jalapeños</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Tocino</span>
+                    
+                    <span class="ingredient-chip item-extras" data-price="0">Pepinillos</span>
                   </div>
                 </div>
                 <!-- Item 5 -->
@@ -361,22 +460,45 @@
                     <span class="badge bg-rosa rounded-pill">$120.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="120" data-name="Mexicana">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Extras...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Comentarios Adicionales...">
                   </div>
-                  <div class="ingredient-chips" data-type="burger">
-                    <span class="ingredient-chip item-extras" data-price="35">Doble Carne</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Queso</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Jamón</span>
+                  <div class="contenedor-btns ingredient-chips" data-type="burger">
+                    <div class="ingredient-group" data-ingredient="Carne" data-price="35">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Carne</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Daisy</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Gouda" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Gouda</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Jamón" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Jamón</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Tocino" data-price="25">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Tocino</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
                     <span class="ingredient-chip item-extras" data-price="10">Piña</span>
                     <span class="ingredient-chip item-extras" data-price="10">Guacamole</span>
                     <span class="ingredient-chip item-extras" data-price="10">Chorizo</span>
                     <span class="ingredient-chip item-extras" data-price="10">Jalapeños</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Tocino</span>
+                    
+                    <span class="ingredient-chip item-extras" data-price="0">Pepinillos</span>
                   </div>
                 </div>
                 <!-- Item 6 -->
@@ -386,22 +508,45 @@
                     <span class="badge bg-rosa rounded-pill">$120.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="120" data-name="Fungi">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Comentarios extras...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Comentarios Adicionales...">
                   </div>
-                  <div class="ingredient-chips" data-type="burger">
-                    <span class="ingredient-chip item-extras" data-price="35">Doble Carne</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Queso</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Jamón</span>
+                  <div class="contenedor-btns ingredient-chips" data-type="burger">
+                    <div class="ingredient-group" data-ingredient="Carne" data-price="35">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Carne</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Daisy</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Queso Gouda" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Queso Gouda</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Jamón" data-price="15">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Jamón</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
+                    <div class="ingredient-group" data-ingredient="Tocino" data-price="25">
+                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <span class="ingredient-chip">Tocino</span>
+                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                    </div>
                     <span class="ingredient-chip item-extras" data-price="10">Piña</span>
                     <span class="ingredient-chip item-extras" data-price="10">Guacamole</span>
                     <span class="ingredient-chip item-extras" data-price="10">Chorizo</span>
                     <span class="ingredient-chip item-extras" data-price="10">Jalapeños</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Tocino</span>
+                    
+                    <span class="ingredient-chip item-extras" data-price="0">Pepinillos</span>
                   </div>
                 </div>
               </div>
@@ -418,19 +563,19 @@
                     <span class="badge bg-rosa rounded-pill">$65.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="65" data-name="Papas Fritas">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Preferencias...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Preferencias...">
                   </div>
                   <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras" data-price="0">Ranch</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras" data-price="0">BBQ</span>
+                    <span class="ingredient-chip item-extras aderezo" data-count="0">Ranch</span>
+                    <span class="ingredient-chip item-extras aderezo" data-count="0">Buffalo</span>
+                    <span class="ingredient-chip item-extras aderezo" data-count="0">Ajo Habanero</span>
+                    <span class="ingredient-chip item-extras aderezo" data-count="0">Chipotle</span>
+                    <span class="ingredient-chip item-extras aderezo" data-count="0">BBQ</span>
                   </div>
                 </div>
                 <!-- Item 2 -->
@@ -440,19 +585,19 @@
                     <span class="badge bg-rosa rounded-pill">$65.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
-                      <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="180" data-name="Plato Botanero">
+                      <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="65" data-name="Aros de Cebolla">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Preferencias...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Preferencias...">
                   </div>
                   <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras" data-price="0">Ranch</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras" data-price="0">BBQ</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
                   </div>
                 </div>
                 <!-- Item 3 -->
@@ -462,19 +607,19 @@
                     <span class="badge bg-rosa rounded-pill">$75.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="75" data-name="Papas Gajo">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Preferencias...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Preferencias...">
                   </div>
                     <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras" data-price="0">Ranch</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras" data-price="0">BBQ</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
                   </div>
                 </div>
                 <!-- Item 4 -->
@@ -484,20 +629,20 @@
                     <span class="badge bg-rosa rounded-pill">$65.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="65" data-name="Papas Curly">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Adicionales" id="papasCurlyExtras">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Adicionales" id="papasCurlyExtras">
                   </div>
-                  </div>
+                  
                     <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras" data-price="0">Ranch</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras" data-price="0">BBQ</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
                   </div>
                 </div>
                 <!-- Item 5 -->
@@ -507,21 +652,19 @@
                     <span class="badge bg-rosa rounded-pill">$90.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="90" data-name="Dedos de Queso">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Preferencias...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Preferencias...">
                   </div>
-                  <div class="ingredient-chips" data-type="burger">
-                    <span class="ingredient-chip item-extras" data-price="0">Queso</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Jamón</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Piña</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Guacamole</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Chorizo</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Jalapeños</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Tocino</span>
+                  <div class="ingredient-chips" data-type="dip">
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
                   </div>
                   </div>
                   <!-- Item 6 -->
@@ -531,31 +674,118 @@
                     <span class="badge bg-rosa rounded-pill">$180.00</span>
                   </div>
                   <div class="d-flex align-items-center mt-2 gap-3">
-                    <div class="input-group input-group-sm" style="width: 120px;">
+                    <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
                       <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="180" data-name="Plato Botanero">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
-                    <input type="text" class="form-control form-control-sm bg-dark color-texto border-secondary item-extras" placeholder="Añade tus Adicionales...">
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
                   </div>
-                  <div class="ingredient-chips" data-type="burger">
-                    <span class="ingredient-chip item-extras" data-price="0">Queso</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Jamón</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Piña</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Guacamole</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Chorizo</span>
-                    <span class="ingredient-chip item-extras" data-price="0">Jalapeños</span>
-                    <span class="ingredient-chip item-extras" data-price="10">Tocino</span>
+                  <div class="ingredient-chips" data-type="dip">
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
+                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
                   </div>
                   </div>
                 </div>
 
+                </div> <!-- fin de columna de complementos -->
+
+                <div class="row g-4 contenido-adicional">  <!-- Aderezos Adicionales -->
+                  <h3 class="mb-4 border-bottom border-secondary pb-2" style="color: #FF7B93;">Aderezos Adicionales</h3>
+                    <div class = "col-md-6"> 
+                      <div class="list-group list-group-flush bg-transparent">
+                        <!-- Item 1 -->
+                         <div class="list-group-item bg-transparent text-white border-secondary mb-3">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw">Ranch</span>
+                            <span class="badge bg-rosa rounded-pill precio-aderezo">$5.00</span>
+                          </div>
+                          <div class="d-flex align-items-center mt-2 gap-3">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                              <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
+                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Ranch">
+                              <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
+                            </div>
+                            <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
+                          </div>
+                          </div>
+                  <!-- Item 2 -->
+                         <div class="list-group-item bg-transparent text-white border-secondary mb-3">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw">Buffalo</span>
+                            <span class="badge bg-rosa rounded-pill precio-aderezo">$5.00</span>
+                          </div>
+                          <div class="d-flex align-items-center mt-2 gap-3">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                              <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
+                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Buffalo">
+                              <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
+                            </div>
+                            <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
+                          </div>
+                          </div>
+                  <!-- Item 3 -->
+                         <div class="list-group-item bg-transparent text-white border-secondary mb-3">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw">Chipotle</span>
+                            <span class="badge bg-rosa rounded-pill">$5.00</span>
+                          </div>
+                          <div class="d-flex align-items-center mt-2 gap-3">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                              <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
+                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Chipotle">
+                              <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
+                            </div>
+                            <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
+                          </div>
+                          </div>
+                              </div>
+
+                    </div>
+                    <div class = "col-md-6"> 
+                      <div class="list-group list-group-flush bg-transparent">
+                        <!-- Item 1 -->
+                         <div class="list-group-item bg-transparent text-white border-secondary mb-3">
+                          <div class="d-flex justify-content-between align-items-center">
+                            <span class="fw">BBQ</span>
+                            <span class="badge bg-rosa rounded-pill">$5.00</span>
+                          </div>
+                          <div class="d-flex align-items-center mt-2 gap-3">
+                            <div class="input-group input-group-sm" style="width: 150px;">
+                              <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
+                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="BBQ">
+                              <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
+                            </div>
+                            <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
+                          </div>
+                          </div>
+                  <!-- Item 2 -->
+                         <div class="list-group-item bg-transparent text-white border-secondary mb-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span class="fw">Ajo Habanero</span>
+                    <span class="badge bg-rosa rounded-pill">$5.00</span>
+                  </div>
+                  <div class="d-flex align-items-center mt-2 gap-3">
+                    <div class="input-group input-group-sm" style="width: 150px;">
+                      <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
+                      <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Ajo Habanero">
+                      <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
+                    </div>
+                    <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
+                  </div>
+                  </div>
+                      </div>
+
+                    </div>
                 </div>
               </div>
             </div>
-          </div>
+          
 
-          <div class="mt-5 p-4 bg-secondary bg-opacity-25 rounded-3 d-flex justify-content-between align-items-center">
+          <div class="total-pedido p-4 rounded-3 d-flex justify-content-between align-items-center">
             <div>
               <h4 class="mb-0">Total del Pedido:</h4>
               <span id="totalDisplay" class="display-6 text-rosa fw-bold">$0.00</span>

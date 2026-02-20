@@ -208,11 +208,12 @@
         color: #FF7B93;
 
     }
+   
 
     .btn-border-rosa {
       background-color: transparent;
       color: #FF7B93;
-      padding: 1rem 2rem;
+      padding: .25rem .25rem;
       border: 2px solid #FF7B93;
       transition: all 0.3s;
     }
@@ -245,24 +246,80 @@
     .ingredient-chips {
       display: flex;
       flex-wrap: wrap;
-      gap: 5px;
-      margin-top: 10px;
+      gap: 8px;
+      margin-top: 8px;
     }
+
+    .contenedor-btns {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
     .ingredient-chip {
-      cursor: pointer;
-      padding: 5px 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 14px;
       border-radius: 20px;
-      border: 1px solid var(--primary-color);
-      color: var(--primary-color);
+      border: 1px solid #FF7B93;
+      color: #FF7B93;
+      background: transparent;
       font-size: 0.85rem;
-      transition: all 0.2s;
+      cursor: pointer;
       user-select: contain;
+      transition: all 0.2s;
+      white-space: nowrap;
     }
 
     .ingredient-chip.active {
       background-color: var(--primary-color);
       color: white;
     }
+
+    .ingredient-chip:hover {
+  background: rgba(255,123,147,0.15);
+}
+
+    .ingredient-group {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+    .ingredient-group.active {
+      background:   rgba(255, 123, 147, 0.1);
+      border: 1px solid #FF7B93;
+      border-radius: 20px;
+    }
+
+    .ingredient-group.active .ingredient-chip {
+      background-color: #FF7B93;
+      color: white;
+      border: none;
+    }
+
+    .chip-ctrl {
+      display: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #FF7B93;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .ingredient-group.active .chip-ctrl {
+      display: flex;
+    }
+    .chip-ctrl:hover {
+      background: #e06a80;
+    }
+
     .nav-button{
       display: flex;
       flex-wrap: wrap;
@@ -281,11 +338,43 @@
       -webkit-appearance: none;
       margin: 0;
     }
+    
+    .total-pedido {
+      position: fixed; /* Se queda fijo en la pantalla */ 
+      bottom: 0; /* Pegado al borde inferior */ 
+      left: 0; /* Alineado al borde izquierdo */
+      width: 100%; /* Ocupa todo el ancho */ 
+      background: #333; /* Color de fondo */
+      z-index: 1000; /* Asegura que esté por encima de otros elementos */
+    }
 
-    /* 📱 Responsivo para pantallas pequeñas */
+    .precio-aderezo
+      {
+        position: fixed;
+        left: 0;
+        right: 0;
+        background-color: #FF7B93;
+        color : white;
+        width: 80px;
+        font: menu;
+
+      }
+    
+      .contenido-adicional{
+        padding-bottom: 100px;
+      }
+    .form-control::placeholder {
+      color: white;
+      opacity: 1;
+    }
+
+    /* 📱 ponsivo para pantallas pequeñas */
     @media (max-width: 768px) {
         .hero h1 {
         font-size: 2.5rem;
+      }
+      .qty-input {
+        width: 60px;
       }
       
       .nav-button{
@@ -311,11 +400,13 @@
       #btnResp{
         padding: 0rem 8rem ;
       }
-      .color-texto{
-        color: white;
-      }
+      
       .presentacionmenu-container {
     grid-template-columns: 1fr; /* se apilan en una sola columna */
+    }
+
+    .btn-border-rosa {
+      padding: .25rem .25rem;
     }
     #bottom {
         display: flex;
@@ -330,6 +421,9 @@
       .contenedor {
         grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
       }
+      .qty-input {
+        padding: .25rem .25rem;
+      }
       .btn-navegacion{
         margin-left: 20px;
       }
@@ -339,6 +433,9 @@
       #btnResp{
         padding: 0rem 4rem ;
       }
+      .btn-border-rosa {
+      padding: .25rem .25rem;
+    }
       #bottom {
         display:table-row;
         margin-left: 30px;

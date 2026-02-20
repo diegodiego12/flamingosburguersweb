@@ -3,11 +3,16 @@
         const totalDisplay = document.getElementById('totalDisplay');
         const confirmBtn = document.getElementById('confirmOrder');
         let metodoPedido = "";
+        // Elementos para manejo de método de pedido
         const btnMostrador = document.getElementById("btnMostrador");
         const btnDomicilio = document.getElementById("btnDomicilio");
         const formMostrador = document.getElementById("formMostrador");
         const formDomicilio = document.getElementById("formDomicilio");
         const inputAdicional = document.querySelectorAll('.item-extras');
+        
+
+        //Variables para sumar dobes carnes o restar carnes
+        
 
         btnMostrador.addEventListener("click", () => {
             metodoPedido = "Mostrador";
@@ -29,10 +34,12 @@
             btnMostrador.classList.remove("btn-rosa");
         });
 
-        // Ingredient chip click handler
+        // Ingredientes adicionales click
       document.querySelectorAll('.ingredient-chip').forEach(chip => {
         chip.addEventListener('click', function() {
+
           this.classList.toggle('active');
+          const btnDobles = document.querySelectorAll("#doblecarne");
           updateTotal(); // Actualizar total cuando se cambie un ingrediente
         });
       });
@@ -41,20 +48,39 @@
       function updateTotal() {
         let total = 0;
         
-        // Calcular total de hamburguesass por cantidad
+        // Calcular total de hamburguesas por cantidad
         qtyInputs.forEach(input => {
           const qty = parseInt(input.value) || 0;
           const price = parseFloat(input.getAttribute('data-price'));
           total += qty * price;
           
           // Sumar ingredientes adicionales para este item
-          const container = input.closest('.list-group-item');
-          if (container) {
-            const activeChips = container.querySelectorAll('.ingredient-chip.active');
-            activeChips.forEach(chip => {
-              const chipPrice = parseFloat(chip.getAttribute('data-price')) || 0;
-              total += qty * chipPrice; // Multiplicar por cantidad del item
+          if (qty > 0) {
+            const container = input.closest('.list-group-item');
+            const extras = container.querySelectorAll('.item-extras.active');
+            const activeGroups = container.querySelectorAll('.ingredient-group.active');
+            const aderezosactivos = document.querySelectorAll('.aderezo.active');
+
+            aderezosactivos.forEach(aderezo => {
+                const aderezosMax = aderezosactivos.length; // Limitar a 2 aderezos
+                
+                if (aderezosMax > 2) {
+                  alert("Solo puedes seleccionar hasta 2 aderezos. Se desactivarán las opciones marcads. Por favor elige solo 2 aderezos.");
+                  aderezo.classList.remove('active');
+                }
+              });
+
+              activeGroups.forEach(group => {
+                const level = parseInt(group.getAttribute('data-level')) || 1;
+                const ingredientPrice = parseFloat(group.getAttribute('data-price')) || 0;
+                total += qty * (level * ingredientPrice);
+              });
+            extras.forEach(extra => {
+              const extraPrice = parseFloat(extra.getAttribute('data-price')) || 0;
+              total += qty * extraPrice;
             });
+              
+              
           }
         });
         
@@ -62,6 +88,51 @@
       }
 
       // Manejo de botones de cantidad
+      document.querySelectorAll('.ingredient-group').forEach(group => {
+        const chip = group.querySelector('.ingredient-chip');
+        const baseName = group.getAttribute('data-ingredient');
+
+        chip.addEventListener('click', function () {
+          const isActive = group.classList.contains('active');
+          if (!isActive) {
+            group.classList.add('active');
+            group.setAttribute('data-level', '1');
+            chip.innerText = baseName;
+          } else {
+            group.classList.remove('active');
+            group.removeAttribute('data-level');
+            chip.innerText = baseName;
+          }
+          updateTotal();
+        });
+
+        group.querySelectorAll('.chip-ctrl').forEach(ctrl => {
+          ctrl.addEventListener('click', function (e) {
+            e.stopPropagation();
+            let level = parseInt(group.getAttribute('data-level')) || 1;
+            const action = this.getAttribute('data-action');
+
+            if (action === 'plus') {
+              level = Math.min(3, level + 1);
+            } else {
+              level = level - 1;
+            }
+
+            if (level <= 0) {
+              group.classList.remove('active');
+              group.removeAttribute('data-level');
+              chip.innerText = baseName;
+            } else {
+              group.classList.add('active');
+              group.setAttribute('data-level', level);
+              const prefix = level === 2 ? 'Doble ' : (level === 3 ? 'Triple ' : (level === 4 ? 'Cuádruple ' : ''));
+              chip.innerText = prefix + baseName;
+            }
+            updateTotal();
+          });
+        });
+      });
+
       document.querySelectorAll('.qty-btn').forEach(btn => {
         btn.addEventListener('click', function() {
           const input = this.parentElement.querySelector('.qty-input');
@@ -88,23 +159,43 @@
           const qty = parseInt(input.value) || 0;
           if (qty > 0) {
             const name = input.getAttribute('data-name');
-            const price = parseFloat(input.getAttribute('data-price'));
+            const basePrice = parseFloat(input.getAttribute('data-price'));
             const container = input.closest('.list-group-item');
-            const extras = container.querySelector('.item-extras').value;
+            const extras = container.querySelector('.item-extras').value.trim();
+            const AderezosComplementos = container.querySelectorAll('.aderezo.active');
             
-            // Get active ingredients
-            const activeChips = container.querySelectorAll('.ingredient-chip.active');
-            let ingredients = Array.from(activeChips).map(c => c.innerText);
+            // Obtener ingredientes adicionales seleccionados
+            let itemPrice = basePrice;
+            const activeGroups = container.querySelectorAll('.ingredient-group.active');
+            let ingredientList = [];
+            let aderezoList = [];
+            let complementosAderezosList = [];
+
+            activeGroups.forEach(group => {
+              const level = parseInt(group.getAttribute('data-level')) || 1;
+              const ingName = group.querySelector('.ingredient-chip').innerText;
+              const ingPrice = parseFloat(group.getAttribute('data-price')) || 0;
+              ingredientList.push(ingName);
+              itemPrice += (level * ingPrice);
+            });
+
+            AderezosComplementos.forEach(aderezo => {
+              const aderezoName = aderezo.innerText;
+              complementosAderezosList.push(aderezoName);
+            });
+
+
             
             let itemDetail = `${qty}x ${name}`;
             let details = [];
-            if (ingredients.length > 0) details.push(`Ingredientes Adicionales: ${ingredients.join(', ')}`);
+            if (ingredientList.length > 0) details.push(`Ingredientes Adicionales: ${ingredientList.join(', ')}`);
+            if (complementosAderezosList.length > 0) details.push(`Aderezos: ${complementosAderezosList.join(', ')}`);
             if (extras) details.push(`Comentario: ${extras}`);
             
             if (details.length > 0) itemDetail += ` [${details.join(' | ')}]`;
             
             orderSummary.push(itemDetail);
-            total += qty * price;
+            total += qty * itemPrice;
           }
         });
 
@@ -124,20 +215,26 @@
 
         if (metodoPedido === "Domicilio") {
             let nombre = document.getElementById("nombreDom").value.trim();
-            let direccion = document.getElementById("direccionDom").value.trim();
+            let telefono = document.getElementById("telefonoDom").value.trim();
+            let calle = document.getElementById("calleDom").value.trim();
+            let entreCalles = document.getElementById("direccionDom").value.trim();
             let referencia = document.getElementById("referenciaDom").value.trim();
-            if(nombre === "" || direccion === "" || referencia === "") {
-                alert("Por favor completa tu nombre y dirección para el pedido a domicilio.");
+            if(nombre === "" || calle === "" || referencia === "" || telefono === "" || telefono.length !== 10 || entreCalles === "") {
+                alert("Por favor completa tu nombre, calle, teléfono y referencia para el pedido a domicilio. El teléfono debe tener 10 dígitos.");
                 return;
 
             }
             mensaje += `\nEntrega a domicilio`;
             mensaje += `\nNombre: ${nombre || "No especificado"}`;
-            mensaje += `\nDirección: ${direccion || "No especificada"}`;
+            mensaje += `\nCalle: ${calle || "No especificada"}`;
+            mensaje += `\nTeléfono: ${telefono || "No especificado"}`;
+            mensaje += `\nEntre Calles: ${entreCalles || "No especificado"}`;
             mensaje += `\nReferencia: ${referencia || "Sin referencia"}`;
         }
           const encodedMessage = encodeURIComponent(mensaje);
           window.open(`https://wa.me/5219871161465?text=${encodedMessage}`, '_blank');
+
+          
         }
       });
     });
