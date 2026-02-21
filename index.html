@@ -278,9 +278,9 @@
                   </div> <!-- Complementos de Hamburguesas -->
                   <div class="contenedor-btns ingredient-chips" data-type="burger">
                     <div class="ingredient-group" data-ingredient="Carne" data-price="35">
-                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <button class="carne-ctrl" data-action="minus" type="button">-</button>
                       <span class="ingredient-chip">Carne</span>
-                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                      <button class="carne-ctrl" data-action="plus" type="button">+</button>
                     </div>
                     <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
                       <button class="chip-ctrl" data-action="minus" type="button">-</button>
@@ -325,9 +325,9 @@
                   </div>
                   <div class="contenedor-btns ingredient-chips" data-type="burger">
                     <div class="ingredient-group" data-ingredient="Carne" data-price="35">
-                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <button class="carne-ctrl" data-action="minus" type="button">-</button>
                       <span class="ingredient-chip">Carne</span>
-                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                      <button class="carne-ctrl" data-action="plus" type="button">+</button>
                     </div>
                     <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
                       <button class="chip-ctrl" data-action="minus" type="button">-</button>
@@ -373,9 +373,9 @@
                   </div>
                   <div class="contenedor-btns ingredient-chips" data-type="burger">
                     <div class="ingredient-group" data-ingredient="Carne" data-price="35">
-                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <button class="carne-ctrl" data-action="minus" type="button">-</button>
                       <span class="ingredient-chip">Carne</span>
-                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                      <button class="carne-ctrl" data-action="plus" type="button">+</button>
                     </div>
                     <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
                       <button class="chip-ctrl" data-action="minus" type="button">-</button>
@@ -421,9 +421,9 @@
                   </div>
                   <div class="contenedor-btns ingredient-chips" data-type="burger">
                     <div class="ingredient-group" data-ingredient="Carne" data-price="35">
-                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <button class="carne-ctrl" data-action="minus" type="button">-</button>
                       <span class="ingredient-chip">Carne</span>
-                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                      <button class="carne-ctrl" data-action="plus" type="button">+</button>
                     </div>
                     <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
                       <button class="chip-ctrl" data-action="minus" type="button">-</button>
@@ -469,9 +469,9 @@
                   </div>
                   <div class="contenedor-btns ingredient-chips" data-type="burger">
                     <div class="ingredient-group" data-ingredient="Carne" data-price="35">
-                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <button class="carne-ctrl" data-action="minus" type="button">-</button>
                       <span class="ingredient-chip">Carne</span>
-                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                      <button class="carne-ctrl" data-action="plus" type="button">+</button>
                     </div>
                     <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
                       <button class="chip-ctrl" data-action="minus" type="button">-</button>
@@ -517,9 +517,9 @@
                   </div>
                   <div class="contenedor-btns ingredient-chips" data-type="burger">
                     <div class="ingredient-group" data-ingredient="Carne" data-price="35">
-                      <button class="chip-ctrl" data-action="minus" type="button">-</button>
+                      <button class="carne-ctrl" data-action="minus" type="button">-</button>
                       <span class="ingredient-chip">Carne</span>
-                      <button class="chip-ctrl" data-action="plus" type="button">+</button>
+                      <button class="carne-ctrl" data-action="plus" type="button">+</button>
                     </div>
                     <div class="ingredient-group" data-ingredient="Queso Daisy" data-price="15">
                       <button class="chip-ctrl" data-action="minus" type="button">-</button>
@@ -571,11 +571,21 @@
                     <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Preferencias...">
                   </div>
                   <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras aderezo" data-count="0">Ranch</span>
-                    <span class="ingredient-chip item-extras aderezo" data-count="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras aderezo" data-count="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras aderezo" data-count="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras aderezo" data-count="0">BBQ</span>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Ranch" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Ranch</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Buffalo" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Buffalo</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Ajo Habanero" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Ajo Habanero</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Chipotle" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Chipotle</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="BBQ" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">BBQ</span>
+                    </div>
                   </div>
                 </div>
                 <!-- Item 2 -->
@@ -593,11 +603,21 @@
                     <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Preferencias...">
                   </div>
                   <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Ranch" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Ranch</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Buffalo" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Buffalo</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Ajo Habanero" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Ajo Habanero</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Chipotle" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Chipotle</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="BBQ" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">BBQ</span>
+                    </div>
                   </div>
                 </div>
                 <!-- Item 3 -->
@@ -614,12 +634,22 @@
                     </div>
                     <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Preferencias...">
                   </div>
-                    <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
+                      <div class="ingredient-chips" data-type="dip">
+                      <div class="ingredient-group aderezo-group" data-ingredient="Ranch" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">Ranch</span>
+                      </div>
+                      <div class="ingredient-group aderezo-group" data-ingredient="Buffalo" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">Buffalo</span>
+                      </div>
+                      <div class="ingredient-group aderezo-group" data-ingredient="Ajo Habanero" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">Ajo Habanero</span>
+                      </div>
+                      <div class="ingredient-group aderezo-group" data-ingredient="Chipotle" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">Chipotle</span>
+                      </div>
+                      <div class="ingredient-group aderezo-group" data-ingredient="BBQ" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">BBQ</span>
+                      </div>
                   </div>
                 </div>
                 <!-- Item 4 -->
@@ -638,11 +668,21 @@
                   </div>
                   
                     <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
+                      <div class="ingredient-group aderezo-group" data-ingredient="Ranch" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">Ranch</span>
+                      </div>
+                      <div class="ingredient-group aderezo-group" data-ingredient="Buffalo" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">Buffalo</span>
+                      </div>
+                      <div class="ingredient-group aderezo-group" data-ingredient="Ajo Habanero" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">Ajo Habanero</span>
+                      </div>
+                      <div class="ingredient-group aderezo-group" data-ingredient="Chipotle" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">Chipotle</span>
+                      </div>
+                      <div class="ingredient-group aderezo-group" data-ingredient="BBQ" data-price="0">
+                        <span class="ingredient-chip aderezo-chip">BBQ</span>
+                      </div>
                   </div>
                 </div>
                 <!-- Item 5 -->
@@ -660,11 +700,21 @@
                     <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Preferencias...">
                   </div>
                   <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Ranch" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Ranch</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Buffalo" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Buffalo</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Ajo Habanero" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Ajo Habanero</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Chipotle" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Chipotle</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="BBQ" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">BBQ</span>
+                    </div>
                   </div>
                   </div>
                   <!-- Item 6 -->
@@ -682,11 +732,21 @@
                     <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
                   </div>
                   <div class="ingredient-chips" data-type="dip">
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ranch</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Buffalo</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Ajo Habanero</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">Chipotle</span>
-                    <span class="ingredient-chip item-extras aderezo" data-price="0">BBQ</span>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Ranch" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Ranch</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Buffalo" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Buffalo</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Ajo Habanero" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Ajo Habanero</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="Chipotle" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">Chipotle</span>
+                    </div>
+                    <div class="ingredient-group aderezo-group" data-ingredient="BBQ" data-price="0">
+                      <span class="ingredient-chip aderezo-chip">BBQ</span>
+                    </div>
                   </div>
                   </div>
                 </div>
@@ -706,7 +766,7 @@
                           <div class="d-flex align-items-center mt-2 gap-3">
                             <div class="input-group input-group-sm" style="width: 150px;">
                               <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
-                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Ranch">
+                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Aderezo Ranch">
                               <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                             </div>
                             <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
@@ -721,7 +781,7 @@
                           <div class="d-flex align-items-center mt-2 gap-3">
                             <div class="input-group input-group-sm" style="width: 150px;">
                               <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
-                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Buffalo">
+                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Aderezo Buffalo">
                               <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                             </div>
                             <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
@@ -736,7 +796,7 @@
                           <div class="d-flex align-items-center mt-2 gap-3">
                             <div class="input-group input-group-sm" style="width: 150px;">
                               <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
-                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Chipotle">
+                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Aderezo Chipotle">
                               <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                             </div>
                             <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
@@ -756,7 +816,7 @@
                           <div class="d-flex align-items-center mt-2 gap-3">
                             <div class="input-group input-group-sm" style="width: 150px;">
                               <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
-                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="BBQ">
+                              <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Aderezo BBQ">
                               <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                             </div>
                             <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">
@@ -771,7 +831,7 @@
                   <div class="d-flex align-items-center mt-2 gap-3">
                     <div class="input-group input-group-sm" style="width: 150px;">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="minus">-</button>
-                      <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Ajo Habanero">
+                      <input type="number" class="form-control btn-border-rosa text-white text-center qty-input" value="0" min="0" data-price="5" data-name="Aderezo Ajo Habanero">
                       <button class="btn btn-border-rosa qty-btn" type="button" data-action="plus">+</button>
                     </div>
                     <input type="text" class="form-control form-control-sm bg-dark text-white border-secondary item-extras" placeholder="Añade tus Adicionales...">

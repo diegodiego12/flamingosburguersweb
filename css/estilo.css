@@ -194,6 +194,7 @@
       background-color: #FF7B93;
       color : white;
       width: 80px;
+      
       font: menu;
     }
     .letras{
@@ -202,6 +203,12 @@
     .btn-rosa{
       background-color: #FF7B93;
       color : white;
+      padding: 0.375rem 3rem;
+    }
+    .btn-rosa:hover{
+      background-color: #e06a80;
+      color: black;
+      transform: scale(1.05);
     }
     .btnform{
         font-size: medium;
@@ -317,6 +324,28 @@
       display: flex;
     }
     .chip-ctrl:hover {
+      background: #e06a80;
+    }
+
+    .carne-ctrl {
+      display: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: #FF7B93;
+      color: white;
+      border: none;
+      font-size: 1rem;
+      line-height: 1;
+      padding: 0;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+    .ingredient-group.active .carne-ctrl {
+      display: flex;
+    }
+    .carne-ctrl:hover {
       background: #e06a80;
     }
 

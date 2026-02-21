@@ -87,10 +87,13 @@
         totalDisplay.innerText = `$${total.toFixed(2)}`;
       }
 
+      
+
       // Manejo de botones de cantidad
-      document.querySelectorAll('.ingredient-group').forEach(group => {
+      document.querySelectorAll('.ingredient-group:not(.aderezo-group)').forEach(group => {
         const chip = group.querySelector('.ingredient-chip');
         const baseName = group.getAttribute('data-ingredient');
+        const carne = group.querySelector('.ingredient-meat');
 
         chip.addEventListener('click', function () {
           const isActive = group.classList.contains('active');
@@ -104,7 +107,7 @@
             chip.innerText = baseName;
           }
           updateTotal();
-        });
+        }); 
 
         group.querySelectorAll('.chip-ctrl').forEach(ctrl => {
           ctrl.addEventListener('click', function (e) {
@@ -130,6 +133,50 @@
             }
             updateTotal();
           });
+        });
+        group.querySelectorAll('.carne-ctrl').forEach(ctrl => {
+          ctrl.addEventListener('click', function (e) {
+            e.stopPropagation();
+            let level = parseInt(group.getAttribute('data-level')) || 1;
+            const action = this.getAttribute('data-action');
+
+            if (action === 'plus') {
+              level = Math.min(3, level + 1);
+            } else {
+              level = level - 1;
+            }
+
+            if (level <= 0) {
+              group.classList.remove('active');
+              group.removeAttribute('data-level');
+              chip.innerText = baseName;
+            } else {
+              group.classList.add('active');
+              group.setAttribute('data-level', level);
+              const prefix = level === 1 ? 'Doble ' : (level === 2 ? 'Triple ' : (level === 3 ? 'Cuádruple ' : ''));
+              chip.innerText = prefix + baseName;
+            }
+            updateTotal();
+          });
+        });
+      });
+
+      document.querySelectorAll('.aderezo-chip').forEach(chip => {
+        chip.addEventListener('click', function () {
+          const group = this.closest('.aderezo-group');
+          const container = this.closest('.list-group-item');
+          const activeDips = container.querySelectorAll('.aderezo-group.active');
+
+          if (group.classList.contains('active')) {
+            group.classList.remove('active');
+          } else {
+            if (activeDips.length >= 2) {
+              alert("Solo puedes seleccionar hasta 2 aderezos por complemento.");
+              return;
+            }
+            group.classList.add('active');
+          }
+          updateTotal();
         });
       });
 
@@ -162,11 +209,12 @@
             const basePrice = parseFloat(input.getAttribute('data-price'));
             const container = input.closest('.list-group-item');
             const extras = container.querySelector('.item-extras').value.trim();
-            const AderezosComplementos = container.querySelectorAll('.aderezo.active');
+            //const AderezosComplementos = container.querySelectorAll('.aderezo.active');
             
             // Obtener ingredientes adicionales seleccionados
             let itemPrice = basePrice;
-            const activeGroups = container.querySelectorAll('.ingredient-group.active');
+            const activeGroups = container.querySelectorAll('.ingredient-group.active:not(.aderezo-group)'); // Solo grupos de ingredientes, no aderezos
+            const activeDips = container.querySelectorAll('.aderezo-group.active');
             let ingredientList = [];
             let aderezoList = [];
             let complementosAderezosList = [];
@@ -179,17 +227,24 @@
               itemPrice += (level * ingPrice);
             });
 
-            AderezosComplementos.forEach(aderezo => {
+            /* AderezosComplementos.forEach(aderezo => {
               const aderezoName = aderezo.innerText;
               complementosAderezosList.push(aderezoName);
             });
-
+              */
+             activeDips.forEach(dip => { // New evento para agregar aderezos a la lista de complementos
+              const dipName = dip.getAttribute('data-ingredient');
+              ingredientList.push(dipName);
+              // Dips usually free or included in price, but we can add price if needed
+              const dipPrice = parseFloat(dip.getAttribute('data-price')) || 0;
+              itemPrice += dipPrice;
+            });
 
             
             let itemDetail = `${qty}x ${name}`;
             let details = [];
-            if (ingredientList.length > 0) details.push(`Ingredientes Adicionales: ${ingredientList.join(', ')}`);
-            if (complementosAderezosList.length > 0) details.push(`Aderezos: ${complementosAderezosList.join(', ')}`);
+            if (ingredientList.length > 0) details.push(`Hamburguersas \n Ingredientes Adicionales: ${ingredientList.join(', ')} \n`);
+            if (complementosAderezosList.length > 0) details.push(`Aderezos: ${complementosAderezosList.join(', ')} \n`);
             if (extras) details.push(`Comentario: ${extras}`);
             
             if (details.length > 0) itemDetail += ` [${details.join(' | ')}]`;
@@ -202,7 +257,7 @@
         if (orderSummary.length === 0) {
           alert('Por favor selecciona al menos un producto.');
         } else {
-          let mensaje = 'Hola, buenas noches.\nQuisiera Ordenar:\n' + orderSummary.join('\n') + '\n\nTotal: $' + total.toFixed(2);
+          let mensaje = 'Hola, buenas noches.\nQuisiera Ordenar:\n' + orderSummary.join('\n') + '\n\nTotal: $' + total.toFixed(2); // Une el resumen del pedido con el total
            if(metodoPedido === null || metodoPedido === "") {
             alert("Por favor selecciona un método de pedido (Mostrador o Domicilio).");
             return;
@@ -236,5 +291,5 @@
 
           
         }
-      });
+      }); 
     });
